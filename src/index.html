@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <!-- <%= htmlWebpackPlugin.options.title %> -->
+        Live Streaming Demo
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="agora-theme">
+    <!-- <header class="container">
+        <div class="agora-primary-bg">
+            <h2>
+                Live Streaming Demo
+            </h2>
+        </div>
+        <div class="feeds-container">
+            <div class="row">
+                <div class="button-group">
+                    <button type="button" class="btn-primary" id="host-join">Join</button>
+                    <button type="button" class="btn-primary" id="audience-join">Join as audience</button>
+                    <button type="button" class="btn-primary" id="leave">Leave</button>
+                </div>
+            </div>
+
+            <div class="row video-group">
+                <div class="col">
+                    <p id="local-player-name" class="player-name"></p>
+                    <div id="local-player" class="player"></div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                    <div id="remote-playerlist" class="remote-playerlist"></div>
+                </div>
+            </div>
+    </header> -->
+
+    <div id="agora-container">
+        <div id="live_streaming_container" class="llive-streaming-container">
+            <form class="border border-light p-5">
+                <p class="h4 mb-4 text-center">Join Live Chat</p>
+                <input class="form-control mb-4" id="channel" name="channel" type="text" placeholder="Enter your Agora channel name" required="">
+
+                <button class="btn btn-info btn-block" id="join" name="join">Join</button>
+                <button class="btn btn-info btn-block" id="leave" name="leave">Leave</button>
+            </form>
+        </div>
+        <div class="row video-group">
+            <div class="col">
+                <p id="local-player-name" class="player-name"></p>
+                <div id="local-player" class="player"></div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <div id="remote-playerlist" class="remote-playerlist"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
