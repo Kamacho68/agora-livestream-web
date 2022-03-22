@@ -8,6 +8,12 @@ body {
     background: #fafafa;
 }
 
+.jumbotron {
+    background-color: #235490;
+    color: #fff;
+    margin-bottom: 0;
+}
+
 #agora-container {
     width: 23rem!important;
 }
@@ -183,6 +189,12 @@ legend,
 
 .video-group {
     padding-left: 3rem!important;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 2rem 2rem;
+    }
 }
 
 @media screen and (min-width: 1200px) {
