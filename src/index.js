@@ -7,10 +7,6 @@ var Config = require('./config'),
 
 document.body.append(component());
 
-console.log('====> Agora sdk version: ' + AgoraRTC.VERSION + ' compatible: ' + AgoraRTC.checkSystemRequirements());
-// console.log('Troubleshooting process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('Troubleshooting conf.appId', conf.appId + ' > ' + conf.channel);
-
 /**
  * @name handleFail
  * @param err - error thrown by any function
@@ -46,8 +42,6 @@ const options = {
 function handleUserPublished(user, mediaType) {
     const uid = user.uid;
     remoteUsers[uid] = user;
-    console.log('Troubleshooting remoteUsers', remoteUsers);
-    console.log('Troubleshooting remoteUsers', JSON.stringify(remoteUsers));
     subscribe(user, mediaType);
 }
 
@@ -81,18 +75,15 @@ async function startBasicCall() {
                 if (!!document.querySelector('[id="channel"]').value) {
                     event.preventDefault();
                     conf.channel = (!!document.querySelector('[id="channel"]').value) ? document.querySelector('[id="channel"]').value : conf.channel;
-                    console.log('Troubleshooting on join > Join as a host');
+
                     rtc.client.setClientRole("host");
                     await join();
-
-                    console.log("Troubleshooting publish success!");
                 }
             }
             // document.getElementById("audience-join").onclick = async function() {
             //     console.log('Troubleshooting on audience-join > Join as audience');
             // }
         document.getElementById("leave").onclick = async function() {
-            console.log('Troubleshooting on leave > Leave');
             leaveCall();
         }
     }
@@ -103,7 +94,7 @@ async function subscribe(user, mediaType) {
     const uid = user.uid;
     // subscribe to a remote user
     await rtc.client.subscribe(user, mediaType);
-    console.log("Troubleshooting subscribe success");
+
     if (mediaType === 'video') {
         const playerContainer = document.createElement("div");
         playerContainer.id = 'player-wrapper-' + user.uid.toString();
@@ -126,7 +117,6 @@ async function subscribe(user, mediaType) {
 }
 
 async function join() {
-    console.log('Troubleshooting on join > join');
 
     rtc.client.on("user-published", handleUserPublished);
     rtc.client.on("user-unpublished", handleUserUnpublished);
@@ -146,8 +136,6 @@ async function join() {
     await rtc.client.publish(Object.values(localTracks));
     disableButton(document.querySelector('[id="join"]'));
     enableButton(document.querySelector('[id="leave"]'));
-
-    console.log("Troubleshooting publish success localTracks", localTracks);
 }
 
 /**
