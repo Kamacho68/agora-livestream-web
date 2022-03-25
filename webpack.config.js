@@ -22,7 +22,7 @@ module.exports = {
         //     directory: path.join(__dirname, 'dist'),
         // },
         static: path.resolve(__dirname, 'dist'),
-        port: process.env.PORT || 5005, // default 8080
+        port: process.env.PORT || 5006, // default 8080
         open: true, // launches the default browser, 
         hot: true, // hot reload, if anything in the src changes reload in memory
         // watchContentBase: true, // if anything in the src changes reload in memory // deprecated

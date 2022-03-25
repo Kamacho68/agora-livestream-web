@@ -14,7 +14,24 @@ body {
     margin-bottom: 0;
 }
 
-#agora-container {
+.player-with-stats {
+    display: flex;
+}
+
+.stats-row {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.stream-stats {
+    min-width: 260px;
+}
+
+.stats {
+    color: gray;
+}
+
+#live_streaming_container {
     width: 23rem!important;
 }
 
@@ -131,14 +148,15 @@ body {
 }
 
 #local-player {
-    padding-bottom: 15px;
+    /* padding-bottom: 15px;
     width: 400px;
-    height: 400px;
+    height: 400px; */
 }
 
 .player {
-    width: 200px;
-    height: 200px;
+    width: 480px;
+    height: 320px;
+    margin-right: 10px;
 }
 
 .container {
@@ -159,9 +177,9 @@ body {
 }
 
 .player-wrapper {
-    display: inline-block;
+    /* display: inline-block;
     margin: 0 auto;
-    padding: 3px;
+    padding: 3px; */
 }
 
 .form-group {
