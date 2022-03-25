@@ -136,6 +136,57 @@ async function join() {
     await rtc.client.publish(Object.values(localTracks));
     disableButton(document.querySelector('[id="join"]'));
     enableButton(document.querySelector('[id="leave"]'));
+
+    var stats = setInterval(getMyStats, 2000);
+    var statsArray = [];
+    var bitRate = [],
+        encodedDelay = [],
+        frameRate = [];
+
+    function getMyStats() {
+        const localStats = {
+            video: rtc.client.getLocalVideoStats(),
+            audio: rtc.client.getLocalAudioStats()
+        };
+        // console.log('Troubleshooting localStats', localStats);
+        var jsonObj = { sendBitrate: localStats.video.sendBitrate, encodeDelay: localStats.video.encodeDelay, sendFrameRate: localStats.video.sendFrameRate };
+
+        bitRate.push(jsonObj.sendBitrate);
+        encodedDelay.push(jsonObj.encodeDelay);
+        frameRate.push(jsonObj.sendFrameRate);
+
+        if (statsArray.length > 9) {
+            // calculate the averages
+            console.log('Current Bit rate being sent', jsonObj.sendBitrate + ' bps');
+            console.log('Average Bit rate being sent', average(bitRate).toFixed(2) + ' bps');
+
+            console.log('Current Encoded delay', jsonObj.encodeDelay + ' ms');
+            console.log('Average Encoded delay', average(encodedDelay).toFixed(2) + ' ms');
+
+            console.log('Current Frame rate being sent', jsonObj.sendFrameRate + ' fps');
+            console.log('Average Frame rate being sent', average(frameRate).toFixed(2) + ' fps');
+
+            // var newHTML = '';
+            //<p class="stats-row">Send audio bit rate: 27200 bps</p>
+            var newHTML = `<p class="stats-row">Current Bit rate being sent: ${jsonObj.sendBitrate} bps</p>
+            <p class="stats-row">Average Bit rate being sent: ${average(bitRate).toFixed(2)} bps</p>
+            <p class="stats-row">Current Encoded delay: ${jsonObj.encodeDelay} ms</p>
+            <p class="stats-row">Average Encoded delay: ${average(encodedDelay).toFixed(2)} ms</p>
+            <p class="stats-row">Current Frame rate being sent: ${jsonObj.sendFrameRate} bfpsps</p>
+            <p class="stats-row">Average Frame rate being sent: ${average(frameRate).toFixed(2)} fps</p>`;
+
+            document.getElementById("local-stats").innerHTML = newHTML;
+
+            statsArray.shift();
+            bitRate.shift();
+            encodedDelay.shift();
+            frameRate.shift();
+
+            statsArray.push(jsonObj);
+        } else {
+            statsArray.push(jsonObj);
+        }
+    }
 }
 
 /**
@@ -184,5 +235,7 @@ async function enableButton(element) {
     element.style.opacity = '1';
     element.style.cursor = 'pointer';
 }
+
+const average = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
 
 startBasicCall();
